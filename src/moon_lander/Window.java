@@ -50,5 +50,7 @@ public class Window extends JFrame{
                 new Window();
             }
         });
+
+        System.out.println("안녕 팀원아");
     }
 }

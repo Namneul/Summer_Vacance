@@ -52,6 +52,6 @@ public class Window extends JFrame{
         });
 
         System.out.println("안녕 팀원아!!!!!!!!!!!!!!!!!!!!!");
-        System.out.println("되는거 맞니 ????????");
+        System.out.println("진짜 되니??");
     }
 }

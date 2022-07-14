@@ -109,7 +109,7 @@ public class PlayerRocket {
         
         ResetPlayer();
         
-        speedAccelerating = 2;
+        speedAccelerating = 5;
         speedStopping = 1;
         
         topLandingSpeed = 5;

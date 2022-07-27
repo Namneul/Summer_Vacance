@@ -1,5 +1,6 @@
 package moon_lander;
 
+import javax.swing.*;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.UserRecord;
@@ -79,6 +80,7 @@ public class login {
                 public void actionPerformed(ActionEvent e) {
                     new resister();
                    dispose();
+
                 }
             });
         }
@@ -89,6 +91,7 @@ public class login {
             try {
                 userRecord = FirebaseAuth.getInstance().getUserByEmail(tID.getText());
                 String email = ((UserRecord) userRecord).getEmail();
+
                 String uid = userRecord.getUid();
                 String password = userRecord.getDisplayName();
 

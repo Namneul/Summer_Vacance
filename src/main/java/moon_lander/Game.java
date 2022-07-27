@@ -75,9 +75,9 @@ public class Game {
         {
             URL backgroundImgUrl = this.getClass().getResource("/resources/images/background.jpg");
             backgroundImg = ImageIO.read(backgroundImgUrl);
-            
-            URL redBorderImgUrl = this.getClass().getResource("/resources/images/red_border.png");
-            redBorderImg = ImageIO.read(redBorderImgUrl);
+
+            URL redborderImgUrl = this.getClass().getResource("/resources/images/red_border.png");
+            redBorderImg = ImageIO.read(redborderImgUrl);
         }
         catch (IOException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);

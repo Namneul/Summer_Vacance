@@ -13,6 +13,7 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
+//뭔가 키보드 마우스 입력과, 이제 Window에서 연 창 안에 그래픽 그리기? 느낌.
 /**
  * Create a JPanel on which we will draw and listen for keyboard and mouse events.
  * 
@@ -57,11 +58,11 @@ public abstract class Canvas extends JPanel implements KeyListener, MouseListene
     @Override
     public void paintComponent(Graphics g)
     {
-        Graphics2D g2d = (Graphics2D)g;        
-        super.paintComponent(g2d);        
+        Graphics2D g2d = (Graphics2D)g;
+        super.paintComponent(g2d);
         Draw(g2d);
     }
-       
+
     
     // Keyboard
     /**

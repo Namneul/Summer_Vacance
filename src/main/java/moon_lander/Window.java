@@ -3,6 +3,7 @@ package moon_lander;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+//Moon_Lander 게임 띄우는 창 관련 코드
 /**
  * Creates frame and set its properties.
  * 

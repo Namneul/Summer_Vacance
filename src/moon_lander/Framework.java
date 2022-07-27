@@ -54,7 +54,7 @@ public class Framework extends Canvas {
     /**
      * Possible states of the game
      */
-    public static enum GameState{STARTING, VISUALIZING, GAME_CONTENT_LOADING, MAIN_MENU, OPTIONS, PLAYING, GAMEOVER, DESTROYED}
+    public static enum GameState{STARTING, VISUALIZING, GAME_CONTENT_LOADING, MAIN_MENU, OPTIONS, PLAYING, GAMEOVER, DESTROYED, LOGIN,START_MENU}
     /**
      * Current state of the game
      */
@@ -162,7 +162,7 @@ public class Framework extends Canvas {
                     LoadContent();
 
                     // When all things that are called above finished, we change game status to main menu.
-                    gameState = GameState.MAIN_MENU;
+                    gameState = GameState.START_MENU;
                 break;
                 case VISUALIZING:
                     // On Ubuntu OS (when I tested on my old computer) this.getWidth() method doesn't return the correct value immediately (eg. for frame that should be 800px width, returns 0 than 790 and at last 798px). 
@@ -200,7 +200,8 @@ public class Framework extends Canvas {
             } catch (InterruptedException ex) { }
         }
     }
-    
+
+
     /**
      * Draw the game to the screen. It is called through repaint() method in GameLoop() method.
      */
@@ -218,8 +219,9 @@ public class Framework extends Canvas {
             case MAIN_MENU:
                 g2d.drawImage(moonLanderMenuImg, 0, 0, frameWidth, frameHeight, null);
                 g2d.setColor(Color.white);
-                g2d.drawString("Use w a d keys to controle the rocket.", frameWidth / 2 - 117, frameHeight / 2);
+                g2d.drawString("Use w a s d keys to control the rocket.", frameWidth / 2 - 117, frameHeight / 2);
                 g2d.drawString("Press any key to start the game.", frameWidth / 2 - 100, frameHeight / 2 + 30);
+                g2d.drawString("Press Here to Sign up or Sign in.", frameWidth / 2 - 100, frameHeight / 2 +60);
                 g2d.drawString("WWW.GAMETUTORIAL.NET", 7, frameHeight - 5);
             break;
             case OPTIONS:
@@ -229,9 +231,14 @@ public class Framework extends Canvas {
                 g2d.setColor(Color.white);
                 g2d.drawString("GAME is LOADING", frameWidth / 2 - 50, frameHeight / 2);
             break;
+            case START_MENU:
+                g2d.drawImage(moonLanderMenuImg, 0, 0, frameWidth, frameHeight, null);
+                g2d.drawString("Welcome To Moon Lander!", frameWidth / 2 - 85, frameHeight / 2);
+                g2d.drawString("Press Enter To Sign in",frameWidth/2 - 85,frameHeight/2 + 30);
+                g2d.drawString("Press Backspace To Sign Up",frameWidth/2 - 85,frameHeight/2 + 60);
         }
     }
-    
+
     /**
      * Starts new game.
      */

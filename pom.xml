@@ -27,21 +27,29 @@
         <maven.compiler.target>18</maven.compiler.target>
     </properties>4
 
-<dependencies>
-    <!-- https://mvnrepository.com/artifact/com.google.firebase/firebase-admin -->
-    <dependency>
-        <groupId>com.google.firebase</groupId>
-        <artifactId>firebase-admin</artifactId>
-        <version>8.2.0</version>
-        <scope>runtime</scope>
-    </dependency>
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.google.firebase/firebase-admin -->
+        <dependency>
+            <groupId>com.google.firebase</groupId>
+            <artifactId>firebase-admin</artifactId>
+            <version>8.1.0</version>
+        </dependency>
 
-    <!-- https://mvnrepository.com/artifact/com.google.auto.value/auto-value -->
-    <dependency>
-        <groupId>com.google.auto.value</groupId>
-        <artifactId>auto-value</artifactId>
-        <version>1.8.2</version>
-        <scope>provided</scope>
-    </dependency>
-</dependencies>
+        <dependency>
+            <groupId>com.intellij</groupId>
+            <artifactId>forms_rt</artifactId>
+            <version>7.0.3</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.google.gms/google-services -->
+        <dependency>
+            <groupId>com.google.gms</groupId>
+            <artifactId>google-services</artifactId>
+            <version>3.1.1</version>
+            <scope>runtime</scope>
+        </dependency>
+
+    </dependencies>
+
 </project>
+

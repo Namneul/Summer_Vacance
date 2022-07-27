@@ -109,10 +109,12 @@ public class Framework extends Canvas {
      */
     private void LoadContent()
     {
+
         try
         {
             URL moonLanderMenuImgUrl = this.getClass().getResource("/resources/images/menu.jpg");
             moonLanderMenuImg = ImageIO.read(moonLanderMenuImgUrl);
+
         }
         catch (IOException ex) {
             Logger.getLogger(Framework.class.getName()).log(Level.SEVERE, null, ex);

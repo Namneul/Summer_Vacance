@@ -5,7 +5,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.UserRecord;
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -80,7 +79,8 @@ public class login {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     new resister();
-                    dispose();
+                   dispose();
+
                 }
             });
         }
@@ -90,7 +90,8 @@ public class login {
             UserRecord userRecord = null;
             try {
                 userRecord = FirebaseAuth.getInstance().getUserByEmail(tID.getText());
-                String email = userRecord.getEmail();
+                String email = ((UserRecord) userRecord).getEmail();
+
                 String uid = userRecord.getUid();
                 String password = userRecord.getDisplayName();
 

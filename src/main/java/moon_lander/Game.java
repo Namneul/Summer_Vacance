@@ -1,8 +1,6 @@
 package moon_lander;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Point;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
@@ -55,7 +53,6 @@ public class Game {
         };
         threadForInitGame.start();
     }
-    
     
    /**
      * Set variables and objects for the game.
@@ -151,9 +148,10 @@ public class Game {
     public void DrawGameOver(Graphics2D g2d, Point mousePosition, long gameTime)
     {
         Draw(g2d, mousePosition);
-        
-        g2d.drawString("Press space or enter to restart.", Framework.frameWidth / 2 - 100, Framework.frameHeight / 3 + 70);
-        
+
+        g2d.drawString("Press space or enter to restart.", Framework.frameWidth / 2 - 100, Framework.frameHeight / 3 + 70 );
+        g2d.drawString("Press backspace to choose another rocket", Framework.frameWidth / 2 - 130, Framework.frameHeight / 3 + 90);
+
         if(playerRocket.landed)
         {
             g2d.drawString("You have successfully landed!", Framework.frameWidth / 2 - 100, Framework.frameHeight / 3);

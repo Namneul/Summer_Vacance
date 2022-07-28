@@ -1,8 +1,8 @@
 package moon_lander;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
@@ -32,6 +32,8 @@ public class PlayerRocket {
      * Y coordinate of the rocket.
      */
     public int y;
+
+    public int mousex, mousey;
     
     /**
      * Is rocket landed?
@@ -199,6 +201,17 @@ public class PlayerRocket {
      */
     public void Update()
     {
+        if(Canvas.mouseButtonState(MouseEvent.BUTTON1)){
+            PointerInfo pt = MouseInfo.getPointerInfo();
+            mousex=pt.getLocation().x-353;
+            mousey=pt.getLocation().y-171;
+
+                speedX = (int)((mousex - x) * 0.1);
+                speedY = (int)((mousey - y) * 0.1);
+
+            x += speedX;
+            y += speedY;
+        };
         // Calculating speed for moving up or down.
         if(Canvas.keyboardKeyState(KeyEvent.VK_W))
             speedY -= speedAccelerating;

@@ -232,6 +232,7 @@ public class Framework extends Canvas {
     @Override
     public void Draw(Graphics2D g2d)
     {
+
         switch (gameState) {
             case PLAYING:
                 game.Draw(g2d, mousePosition());

@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -20,6 +21,11 @@ public class Game {
      * The space rocket with which player will have to land.
      */
     private PlayerRocket playerRocket;
+
+    private Random random;
+
+    private Obstacle laserBeam;
+
     /**
      * Landing area on which rocket will have to land.
      */
@@ -101,6 +107,7 @@ public class Game {
     {
         // Move the rocket
         playerRocket.Update();
+
         
         // Checks where the player rocket is. Is it still in the space or is it landed or crashed?
         // First we check bottom y coordinate of the rocket if is it near the landing area.

@@ -201,6 +201,7 @@ public class PlayerRocket {
      */
     public void Update()
     {
+
         if(Canvas.mouseButtonState(MouseEvent.BUTTON1)){
             PointerInfo pt = MouseInfo.getPointerInfo();
             mousex=pt.getLocation().x-353;

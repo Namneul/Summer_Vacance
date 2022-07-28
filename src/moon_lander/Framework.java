@@ -365,6 +365,9 @@ public class Framework extends Canvas {
             case GAMEOVER:
                 if(e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER)
                     restartGame();
+                else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+                    gameState = GameState.CUSTOMIZE_MENU;
+                }
                 break;
             case LOADING_BEFORE_START:
                 newGame();

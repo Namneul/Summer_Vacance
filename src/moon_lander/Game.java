@@ -148,9 +148,10 @@ public class Game {
     public void DrawGameOver(Graphics2D g2d, Point mousePosition, long gameTime)
     {
         Draw(g2d, mousePosition);
-        
-        g2d.drawString("Press space or enter to restart.", Framework.frameWidth / 2 - 100, Framework.frameHeight / 3 + 70);
-        
+
+        g2d.drawString("Press space or enter to restart.", Framework.frameWidth / 2 - 100, Framework.frameHeight / 3 + 70 );
+        g2d.drawString("Press backspace to choose another rocket", Framework.frameWidth / 2 - 130, Framework.frameHeight / 3 + 90);
+
         if(playerRocket.landed)
         {
             g2d.drawString("You have successfully landed!", Framework.frameWidth / 2 - 100, Framework.frameHeight / 3);

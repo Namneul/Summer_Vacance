@@ -7,13 +7,13 @@ import com.google.firebase.FirebaseOptions;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
 
 public class MFirebaseTool {
     private static MFirebaseTool mFirebaseTool = null;
 
-    private MFirebaseTool() {
+    public MFirebaseTool() {
         try {
             FileInputStream serviceAccount = new FileInputStream(this.getClass().getResource("key.json").getPath());
             FirebaseOptions options = new FirebaseOptions.Builder()

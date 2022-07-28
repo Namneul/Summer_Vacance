@@ -119,22 +119,22 @@ public class Framework extends Canvas {
 
         try
         {
-            URL rocketImgUrl = this.getClass().getResource("/resources/images/rocket.png");
+            URL rocketImgUrl = this.getClass().getResource("resources/images/rocket.png");
             rocketImg = ImageIO.read(rocketImgUrl);
 
-            URL rocket_pinkImgUrl = this.getClass().getResource("/resources/images/rocket_pink.png");
+            URL rocket_pinkImgUrl = this.getClass().getResource("resources/images/rocket_pink.png");
             rocket_pinkImg = ImageIO.read(rocket_pinkImgUrl);
 
-            URL rocket_blueImgUrl = this.getClass().getResource("/resources/images/rocket_blue.png");
+            URL rocket_blueImgUrl = this.getClass().getResource("resources/images/rocket_blue.png");
             rocket_blueImg = ImageIO.read(rocket_blueImgUrl);
 
-            URL rocket_yellowImgUrl = this.getClass().getResource("/resources/images/rocket_yellow.png");
+            URL rocket_yellowImgUrl = this.getClass().getResource("resources/images/rocket_yellow.png");
             rocket_yellowImg = ImageIO.read(rocket_yellowImgUrl);
 
-            URL customBackImgUrl = this.getClass().getResource("/resources/images/custom_back.jpg");
+            URL customBackImgUrl = this.getClass().getResource("resources/images/custom_back.jpg");
             customBackImg = ImageIO.read(customBackImgUrl);
 
-            URL moonLanderMenuImgUrl = this.getClass().getResource("/resources/images/menu.jpg");
+            URL moonLanderMenuImgUrl = this.getClass().getResource("resources/images/menu.jpg");
             moonLanderMenuImg = ImageIO.read(moonLanderMenuImgUrl);
 
         }

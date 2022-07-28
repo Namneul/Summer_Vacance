@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/moon_lander.iml" filepath="$PROJECT_DIR$/moon_lander.iml" />
+      <module fileurl="file://$PROJECT_DIR$/firebase-auth.iml" filepath="$PROJECT_DIR$/firebase-auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/my-project.iml" filepath="$PROJECT_DIR$/my-project.iml" />
     </modules>
   </component>
 </project>

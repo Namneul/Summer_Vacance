@@ -24,7 +24,7 @@ public class Game {
 
     private Random random;
 
-    private Obstacle laserBeam;
+    private Obstacle obstacle;
 
     /**
      * Landing area on which rocket will have to land.
@@ -40,12 +40,12 @@ public class Game {
      * Red border of the frame. It is used when player crash the rocket.
      */
     private BufferedImage redBorderImg;
-    
+
 
     public Game()
     {
         Framework.gameState = Framework.GameState.GAME_CONTENT_LOADING;
-        
+
         Thread threadForInitGame = new Thread() {
             @Override
             public void run(){
@@ -53,22 +53,25 @@ public class Game {
                 Initialize();
                 // Load game files (images, sounds, ...)
                 LoadContent();
-                
+
+
                 Framework.gameState = Framework.GameState.PLAYING;
             }
         };
         threadForInitGame.start();
     }
-    
-   /**
+
+
+    /**
      * Set variables and objects for the game.
      */
     private void Initialize()
     {
         playerRocket = new PlayerRocket();
         landingArea  = new LandingArea();
+        obstacle = new Obstacle();
     }
-    
+
     /**
      * Load game files - images, sounds, ...
      */
@@ -93,7 +96,9 @@ public class Game {
      */
     public void RestartGame()
     {
+
         playerRocket.ResetPlayer();
+        obstacle.ResetLasers();
     }
     
     
@@ -108,7 +113,14 @@ public class Game {
         // Move the rocket
         playerRocket.Update();
 
-        
+        obstacle.Update();
+
+        if ((obstacle.y - obstacle.laserImgHeight / 2) <= (playerRocket.y + playerRocket.rocketImgHeight / 2) &&
+                ((playerRocket.y - playerRocket.rocketImgHeight / 2) <= obstacle.y + obstacle.laserImgHeight / 2))
+        {
+            Framework.gameState = Framework.GameState.GAMEOVER;
+        }
+
         // Checks where the player rocket is. Is it still in the space or is it landed or crashed?
         // First we check bottom y coordinate of the rocket if is it near the landing area.
         if(playerRocket.y + playerRocket.rocketImgHeight - 10   > landingArea.y)
@@ -142,6 +154,7 @@ public class Game {
         landingArea.Draw(g2d);
         
         playerRocket.Draw(g2d);
+        obstacle.Draw(g2d);
     }
     
     

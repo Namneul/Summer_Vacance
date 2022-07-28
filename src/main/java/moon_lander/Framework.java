@@ -102,7 +102,7 @@ public class Framework extends Canvas {
      */
     private void Initialize()
     {
-        MFirebaseTool mFirebaseTool = MFirebaseTool.getInstance();
+
     }
     
     /**

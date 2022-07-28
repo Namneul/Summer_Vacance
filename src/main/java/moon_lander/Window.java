@@ -1,7 +1,7 @@
 package moon_lander;
 
-import firebase.ConectionFirebase;
 import firebase.MFirebaseTool;
+
 
 import javax.swing.*;
 import javax.swing.SwingUtilities;
@@ -57,6 +57,6 @@ public class Window extends JFrame{
         });
 
         new LoginPage();
-        new MFirebaseTool();
+        new MFirebaseTool().MFirebaseTool();
     }
 }

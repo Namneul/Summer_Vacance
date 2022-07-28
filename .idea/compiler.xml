@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="firebase-auth" target="1.5" />
+      <module name="firebase-auth" target="18" />
       <module name="moon_lander" target="7" />
       <module name="my-project" target="7" />
     </bytecodeTargetLevel>

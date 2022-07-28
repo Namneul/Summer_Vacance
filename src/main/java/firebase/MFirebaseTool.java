@@ -10,20 +10,30 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class App {
+public class MFirebaseTool {
+    private static MFirebaseTool mFirebaseTool = null;
 
-    public void initFirebase(){
-
+    private MFirebaseTool() {
         try {
-            FileInputStream serviceAccount = new FileInputStream("moon.json");
+            FileInputStream serviceAccount = new FileInputStream(this.getClass().getResource("key.json").getPath());
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                     .setDatabaseUrl("https://moonlander1-c4ddb-default-rtdb.firebaseio.com/")
                     .build();
 
             FirebaseApp.initializeApp(options);
+
+            System.out.println(FirebaseApp.getInstance().getName());
         } catch (IOException e) {
-            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, e);
+            e.printStackTrace();
         }
+    }
+
+    public static MFirebaseTool getInstance() {
+        if (mFirebaseTool == null) {
+            mFirebaseTool = new MFirebaseTool();
+        }
+
+        return mFirebaseTool;
     }
 }

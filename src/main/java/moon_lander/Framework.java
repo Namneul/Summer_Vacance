@@ -1,5 +1,7 @@
 package moon_lander;
 
+import firebase.MFirebaseTool;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -50,7 +52,7 @@ public class Framework extends Canvas {
      * Pause between updates. It is in nanoseconds.
      */
     private final long GAME_UPDATE_PERIOD = secInNanosec / GAME_FPS;
-    
+
     /**
      * Possible states of the game
      */
@@ -100,7 +102,7 @@ public class Framework extends Canvas {
      */
     private void Initialize()
     {
-        
+        MFirebaseTool mFirebaseTool = MFirebaseTool.getInstance();
     }
     
     /**
@@ -111,7 +113,7 @@ public class Framework extends Canvas {
     {
         try
         {
-            URL moonLanderMenuImgUrl = this.getClass().getResource("/resources/images/menu.jpg");
+            URL moonLanderMenuImgUrl = this.getClass().getResource("resources/images/menu.jpg");
             moonLanderMenuImg = ImageIO.read(moonLanderMenuImgUrl);
         }
         catch (IOException ex) {
@@ -144,7 +146,8 @@ public class Framework extends Canvas {
                     lastTime = System.nanoTime();
                 break;
                 case GAMEOVER:
-                    //...
+
+
                 break;
                 case MAIN_MENU:
                     //...

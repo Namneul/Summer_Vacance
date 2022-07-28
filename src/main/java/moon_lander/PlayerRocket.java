@@ -119,18 +119,18 @@ public class PlayerRocket {
     {
         try
         {
-            URL rocketImgUrl = this.getClass().getResource("/resources/images/rocket.png");
-            rocketImg = ImageIO.read(rocketImgUrl);
+            URL rocketLandedImgurl= this.getClass().getResource("resources/images/rocket.png");
+            rocketImg = ImageIO.read(rocketLandedImgurl);
             rocketImgWidth = rocketImg.getWidth();
             rocketImgHeight = rocketImg.getHeight();
             
-            URL rocketLandedImgUrl = this.getClass().getResource("/resources/images/rocket_landed.png");
+            URL rocketLandedImgUrl = this.getClass().getResource("resources/images/rocket_landed.png");
             rocketLandedImg = ImageIO.read(rocketLandedImgUrl);
             
-            URL rocketCrashedImgUrl = this.getClass().getResource("/resources/images/rocket_crashed.png");
+            URL rocketCrashedImgUrl = this.getClass().getResource("resources/images/rocket_crashed.png");
             rocketCrashedImg = ImageIO.read(rocketCrashedImgUrl);
             
-            URL rocketFireImgUrl = this.getClass().getResource("/resources/images/rocket_fire.png");
+            URL rocketFireImgUrl = this.getClass().getResource("resources/images/rocket_fire.png");
             rocketFireImg = ImageIO.read(rocketFireImgUrl);
         }
         catch (IOException ex) {

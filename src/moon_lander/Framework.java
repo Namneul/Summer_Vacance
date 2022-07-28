@@ -258,7 +258,8 @@ public class Framework extends Canvas {
             case CUSTOMIZE_MENU:
                 g2d.drawImage(customBackImg, 0, 0, frameWidth, frameHeight, null);
                 g2d.setColor(Color.white);
-                g2d.drawString("Choose your Rocket to land!", frameWidth / 2 - 85, frameHeight / 2 - 150);
+                g2d.drawString("Choose your Rocket to land!", frameWidth / 2 - 85, frameHeight / 2 - 155);
+                g2d.drawString("Press Enter to choose.", frameWidth / 2 - 70, frameHeight / 2 - 130);
                 while (true) {
                     if (Canvas.keyboardKeyState(KeyEvent.VK_LEFT)) {
                         if (ctm == 0) {
@@ -282,16 +283,16 @@ public class Framework extends Canvas {
                     }
                     switch (ctm) {
                         case 0:
-                            g2d.drawImage(rocketImg, frameWidth / 2, frameHeight / 2, rocketImg.getWidth(), rocketImg.getHeight(), null);
+                            g2d.drawImage(rocketImg, frameWidth / 2 - 50, frameHeight / 2 -70, rocketImg.getWidth()+20, rocketImg.getHeight()+20, null);
                             break;
                         case 1:
-                            g2d.drawImage(rocket_yellowImg, frameWidth / 2, frameHeight / 2, rocket_yellowImg.getWidth(), rocket_yellowImg.getHeight(), null);
+                            g2d.drawImage(rocket_yellowImg, frameWidth / 2- 50, frameHeight / 2-70, rocket_yellowImg.getWidth()+20, rocket_yellowImg.getHeight()+20, null);
                             break;
                         case 2:
-                            g2d.drawImage(rocket_pinkImg, frameWidth / 2, frameHeight / 2, rocket_pinkImg.getWidth(), rocket_pinkImg.getHeight(), null);
+                            g2d.drawImage(rocket_pinkImg, frameWidth / 2- 50, frameHeight / 2-70, rocket_pinkImg.getWidth()+20, rocket_pinkImg.getHeight()+20, null);
                             break;
                         case 3:
-                            g2d.drawImage(rocket_blueImg, frameWidth / 2, frameHeight / 2, rocket_blueImg.getWidth(), rocket_blueImg.getHeight(), null);
+                            g2d.drawImage(rocket_blueImg, frameWidth / 2- 50, frameHeight / 2-70, rocket_blueImg.getWidth()+20, rocket_blueImg.getHeight()+20, null);
                             break;
                     }
                     break;

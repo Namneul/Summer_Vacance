@@ -119,16 +119,56 @@ public class PlayerRocket {
     {
         try
         {
-            URL rocketImgUrl = this.getClass().getResource("/resources/images/rocket.png");
-            rocketImg = ImageIO.read(rocketImgUrl);
-            rocketImgWidth = rocketImg.getWidth();
-            rocketImgHeight = rocketImg.getHeight();
-            
-            URL rocketLandedImgUrl = this.getClass().getResource("/resources/images/rocket_landed.png");
-            rocketLandedImg = ImageIO.read(rocketLandedImgUrl);
-            
-            URL rocketCrashedImgUrl = this.getClass().getResource("/resources/images/rocket_crashed.png");
-            rocketCrashedImg = ImageIO.read(rocketCrashedImgUrl);
+            switch (Framework.ctm){
+                case 0:
+                    URL rocketImgUrl = this.getClass().getResource("/resources/images/rocket.png");
+                    rocketImg = ImageIO.read(rocketImgUrl);
+                    rocketImgWidth = rocketImg.getWidth();
+                    rocketImgHeight = rocketImg.getHeight();
+
+                    URL rocketLandedImgUrl = this.getClass().getResource("/resources/images/rocket_landed.png");
+                    rocketLandedImg = ImageIO.read(rocketLandedImgUrl);
+
+                    URL rocketCrashedImgUrl = this.getClass().getResource("/resources/images/rocket_crashed.png");
+                    rocketCrashedImg = ImageIO.read(rocketCrashedImgUrl);
+                    break;
+                case 1:
+                    URL rocketYellowImgUrl = this.getClass().getResource("/resources/images/rocket_yellow.png");
+                    rocketImg = ImageIO.read(rocketYellowImgUrl);
+                    rocketImgWidth = rocketImg.getWidth();
+                    rocketImgHeight = rocketImg.getHeight();
+
+                    URL rocketYellowLandedImgUrl = this.getClass().getResource("/resources/images/rocket_yellow_landed.png");
+                    rocketLandedImg = ImageIO.read(rocketYellowLandedImgUrl);
+
+                    URL rocketYellowCrashedImgUrl = this.getClass().getResource("/resources/images/rocket_yellow_crashed.png");
+                    rocketCrashedImg = ImageIO.read(rocketYellowCrashedImgUrl);
+                    break;
+                case 2:
+                    URL rocketPinkImgUrl = this.getClass().getResource("/resources/images/rocket_pink.png");
+                    rocketImg = ImageIO.read(rocketPinkImgUrl);
+                    rocketImgWidth = rocketImg.getWidth();
+                    rocketImgHeight = rocketImg.getHeight();
+
+                    URL rocketPinkLandedImgUrl = this.getClass().getResource("/resources/images/rocket_pink_landed.png");
+                    rocketLandedImg = ImageIO.read(rocketPinkLandedImgUrl);
+
+                    URL rocketPinkCrashedImgUrl = this.getClass().getResource("/resources/images/rocket_pink_crashed.png");
+                    rocketCrashedImg = ImageIO.read(rocketPinkCrashedImgUrl);
+                    break;
+                case 3:
+                    URL rocketBlueImgUrl = this.getClass().getResource("/resources/images/rocket_blue.png");
+                    rocketImg = ImageIO.read(rocketBlueImgUrl);
+                    rocketImgWidth = rocketImg.getWidth();
+                    rocketImgHeight = rocketImg.getHeight();
+
+                    URL rocketBlueLandedImgUrl = this.getClass().getResource("/resources/images/rocket_blue_landed.png");
+                    rocketLandedImg = ImageIO.read(rocketBlueLandedImgUrl);
+
+                    URL rocketBlueCrashedImgUrl = this.getClass().getResource("/resources/images/rocket_blue_crashed.png");
+                    rocketCrashedImg = ImageIO.read(rocketBlueCrashedImgUrl);
+                    break;
+            }
             
             URL rocketFireImgUrl = this.getClass().getResource("/resources/images/rocket_fire.png");
             rocketFireImg = ImageIO.read(rocketFireImgUrl);

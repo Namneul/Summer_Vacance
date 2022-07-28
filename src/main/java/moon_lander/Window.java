@@ -6,8 +6,6 @@ import firebase.MFirebaseTool;
 import javax.swing.*;
 import javax.swing.SwingUtilities;
 
-
-
 /**
  * Creates frame and set its properties.
  * 
@@ -28,7 +26,7 @@ public class Window extends JFrame{
             // Puts the frame to full screen.
             this.setExtendedState(this.MAXIMIZED_BOTH);
         }
-        else // Window mode..
+        else // Window mode
         {
             // Size of the frame.
             this.setSize(800, 600);

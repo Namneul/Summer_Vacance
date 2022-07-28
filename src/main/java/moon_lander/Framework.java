@@ -1,6 +1,6 @@
 package moon_lander;
 
-import firebase.MFirebaseTool;
+
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -217,6 +217,7 @@ public class Framework extends Canvas {
             break;
             case GAMEOVER:
                 game.DrawGameOver(g2d, mousePosition(), gameTime);
+                Object time = gameTime;
             break;
             case MAIN_MENU:
                 g2d.drawImage(moonLanderMenuImg, 0, 0, frameWidth, frameHeight, null);

@@ -6,11 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="moon_lander" />
+        <module name="my-project" />
+        <module name="firebase-auth" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="moon_lander" target="17" />
+      <module name="firebase-auth" target="18" />
+      <module name="moon_lander" target="7" />
+      <module name="my-project" target="7" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,9 +1,13 @@
 package moon_lander;
 
-import javax.swing.JFrame;
+import firebase.MFirebaseTool;
+
+
+import javax.swing.*;
 import javax.swing.SwingUtilities;
 
-//Moon_Lander 게임 띄우는 창 관련 코드
+
+
 /**
  * Creates frame and set its properties.
  * 
@@ -24,7 +28,7 @@ public class Window extends JFrame{
             // Puts the frame to full screen.
             this.setExtendedState(this.MAXIMIZED_BOTH);
         }
-        else // Window mode
+        else // Window mode..
         {
             // Size of the frame.
             this.setSize(800, 600);
@@ -51,5 +55,8 @@ public class Window extends JFrame{
                 new Window();
             }
         });
+
+        new LoginPage();
+        new MFirebaseTool().MFirebaseTool();
     }
 }

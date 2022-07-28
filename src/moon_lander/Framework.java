@@ -5,12 +5,14 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.*;
 
 /**
  * Framework that controls the game (Game.java) that created it, update it and draw it on the screen.
@@ -54,7 +56,7 @@ public class Framework extends Canvas {
     /**
      * Possible states of the game
      */
-    public static enum GameState{STARTING, VISUALIZING, GAME_CONTENT_LOADING, MAIN_MENU, OPTIONS, PLAYING, GAMEOVER, DESTROYED, LOGIN,START_MENU}
+    public static enum GameState{STARTING, VISUALIZING, GAME_CONTENT_LOADING, MAIN_MENU, OPTIONS, PLAYING, GAMEOVER, DESTROYED, CUSTOMIZE_MENU}
     /**
      * Current state of the game
      */
@@ -75,7 +77,8 @@ public class Framework extends Canvas {
      * Image for menu.
      */
     private BufferedImage moonLanderMenuImg;
-    
+    private BufferedImage customBackImg;
+    private BufferedImage rocketImg, rocket_pinkImg, rocket_blueImg, rocket_yellowImg;
     
     public Framework ()
     {
@@ -111,6 +114,21 @@ public class Framework extends Canvas {
     {
         try
         {
+            URL rocketImgUrl = this.getClass().getResource("/resources/images/rocket.png");
+            rocketImg = ImageIO.read(rocketImgUrl);
+
+            URL rocket_pinkImgUrl = this.getClass().getResource("/resources/images/rocket_pink.png");
+            rocket_pinkImg = ImageIO.read(rocket_pinkImgUrl);
+
+            URL rocket_blueImgUrl = this.getClass().getResource("/resources/images/rocket_blue.png");
+            rocket_blueImg = ImageIO.read(rocket_blueImgUrl);
+
+            URL rocket_yellowImgUrl = this.getClass().getResource("/resources/images/rocket_yellow.png");
+            rocket_yellowImg = ImageIO.read(rocket_yellowImgUrl);
+
+            URL customBackImgUrl = this.getClass().getResource("/resources/images/custom_back.jpg");
+            customBackImg = ImageIO.read(customBackImgUrl);
+
             URL moonLanderMenuImgUrl = this.getClass().getResource("/resources/images/menu.jpg");
             moonLanderMenuImg = ImageIO.read(moonLanderMenuImgUrl);
         }
@@ -161,8 +179,8 @@ public class Framework extends Canvas {
                     // Load files - images, sounds, ...
                     LoadContent();
 
+                    gameState = GameState.MAIN_MENU;
                     // When all things that are called above finished, we change game status to main menu.
-                    gameState = GameState.START_MENU;
                 break;
                 case VISUALIZING:
                     // On Ubuntu OS (when I tested on my old computer) this.getWidth() method doesn't return the correct value immediately (eg. for frame that should be 800px width, returns 0 than 790 and at last 798px). 
@@ -219,9 +237,8 @@ public class Framework extends Canvas {
             case MAIN_MENU:
                 g2d.drawImage(moonLanderMenuImg, 0, 0, frameWidth, frameHeight, null);
                 g2d.setColor(Color.white);
-                g2d.drawString("Use w a s d keys to control the rocket.", frameWidth / 2 - 117, frameHeight / 2);
-                g2d.drawString("Press any key to start the game.", frameWidth / 2 - 100, frameHeight / 2 + 30);
-                g2d.drawString("Press Here to Sign up or Sign in.", frameWidth / 2 - 100, frameHeight / 2 +60);
+                g2d.drawString("Welcome to Moon Lander!.", frameWidth / 2 - 85, frameHeight / 2);
+                g2d.drawString("Press any key to choose your rocket.", frameWidth / 2 - 115, frameHeight / 2 + 30);
                 g2d.drawString("WWW.GAMETUTORIAL.NET", 7, frameHeight - 5);
             break;
             case OPTIONS:
@@ -231,14 +248,28 @@ public class Framework extends Canvas {
                 g2d.setColor(Color.white);
                 g2d.drawString("GAME is LOADING", frameWidth / 2 - 50, frameHeight / 2);
             break;
-            case START_MENU:
-                g2d.drawImage(moonLanderMenuImg, 0, 0, frameWidth, frameHeight, null);
-                g2d.drawString("Welcome To Moon Lander!", frameWidth / 2 - 85, frameHeight / 2);
-                g2d.drawString("Press Enter To Sign in",frameWidth/2 - 85,frameHeight/2 + 30);
-                g2d.drawString("Press Backspace To Sign Up",frameWidth/2 - 85,frameHeight/2 + 60);
+            case CUSTOMIZE_MENU:
+                int ctm = 0;
+                g2d.drawImage(customBackImg , 0, 0, frameWidth, frameHeight, null);
+                g2d.setColor(Color.white);
+                g2d.drawString("Choose your Rocket to land!", frameWidth / 2 - 85, frameHeight / 2 - 150);
+                    if(Canvas.keyboardKeyState(KeyEvent.VK_LEFT)){
+                        g2d.drawString("LEFT KEY", frameWidth / 2 - 115, frameHeight / 2 + 30);
+
+                    } else if (Canvas.keyboardKeyState(KeyEvent.VK_RIGHT)){
+                        g2d.drawString("RIGHT KEY", frameWidth / 2 - 115, frameHeight / 2 + 30);
+
+                    } else if (Canvas.keyboardKeyState(KeyEvent.VK_ENTER)) {
+                        g2d.drawString("ENTER KEY", frameWidth / 2 - 115, frameHeight / 2 + 30);
+                    }
+                    switch (ctm){
+                        case 0:
+                            g2d.drawImage(customBackImg , frameWidth/2, frameHeight/2, rocketImg.getWidth(), rocketImg.getHeight(), null);
+                            break;
+                    }
+                break;
         }
     }
-
     /**
      * Starts new game.
      */
@@ -300,7 +331,7 @@ public class Framework extends Canvas {
         switch (gameState)
         {
             case MAIN_MENU:
-                newGame();
+                gameState = GameState.CUSTOMIZE_MENU;
             break;
             case GAMEOVER:
                 if(e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER)

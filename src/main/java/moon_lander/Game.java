@@ -94,12 +94,6 @@ public class Game {
     }
 
     private void obstacleInitialize(){
-//        try {
-//            Thread.sleep(delay - System.currentTimeMillis() + preT);
-//            curT ++;
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
         if (curT % 100 == 0 ){
             obstacle = new Obstacle();
         }
@@ -144,8 +138,11 @@ public class Game {
     public void UpdateGame(long gameTime, Point mousePosition)
     {
         // Move the rocket
-        playerRocket.Update();
-
+        if(Framework.ctrl == 1){
+            playerRocket.Mouse_Update();
+        } else if (Framework.ctrl == 2) {
+            playerRocket.Keyboard_Update();
+        }
         obstacle.Update();
 
         if ((obstacle.y - obstacle.laserImgHeight / 2) <= (playerRocket.y + playerRocket.rocketImgHeight - 10) &&
@@ -180,6 +177,8 @@ public class Game {
      * @param g2d Graphics2D
      * @param mousePosition current mouse position.
      */
+
+
     public void Draw(Graphics2D g2d, Point mousePosition)
     {
         g2d.drawImage(backgroundImg, 0, 0, Framework.frameWidth, Framework.frameHeight, null);

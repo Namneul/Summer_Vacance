@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -16,10 +17,21 @@ import javax.imageio.ImageIO;
 
 public class Game {
 
+    private int curT;
+
+    private long preT;
+
+    private int delay = 1500;
+
     /**
      * The space rocket with which player will have to land.
      */
     private PlayerRocket playerRocket;
+
+    private Random random;
+
+    private Obstacle obstacle;
+
     /**
      * Landing area on which rocket will have to land.
      */
@@ -34,35 +46,59 @@ public class Game {
      * Red border of the frame. It is used when player crash the rocket.
      */
     private BufferedImage redBorderImg;
-    
 
     public Game()
     {
         Framework.gameState = Framework.GameState.GAME_CONTENT_LOADING;
-        
+
         Thread threadForInitGame = new Thread() {
             @Override
             public void run(){
+
+
                 // Sets variables and objects for the game.
                 Initialize();
                 // Load game files (images, sounds, ...)
                 LoadContent();
-                
+
+
                 Framework.gameState = Framework.GameState.PLAYING;
+                curT= 0;
+                while(true){
+                    preT = System.currentTimeMillis();
+                        try {
+                            Thread.sleep(delay );
+                            obstacleInitialize();
+                            curT ++;
+
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                }
             }
         };
         threadForInitGame.start();
     }
-    
-   /**
+
+
+
+
+    /**
      * Set variables and objects for the game.
      */
     private void Initialize()
     {
         playerRocket = new PlayerRocket();
         landingArea  = new LandingArea();
+        obstacle = new Obstacle();
     }
-    
+
+    private void obstacleInitialize(){
+        if (curT % 100 == 0 ){
+            obstacle = new Obstacle();
+        }
+    }
+
     /**
      * Load game files - images, sounds, ...
      */
@@ -87,7 +123,9 @@ public class Game {
      */
     public void RestartGame()
     {
+
         playerRocket.ResetPlayer();
+        obstacle.ResetLasers();
     }
     
     
@@ -100,8 +138,19 @@ public class Game {
     public void UpdateGame(long gameTime, Point mousePosition)
     {
         // Move the rocket
-        playerRocket.Update();
-        
+        if(Framework.ctrl == 1){
+            playerRocket.Mouse_Update();
+        } else if (Framework.ctrl == 2) {
+            playerRocket.Keyboard_Update();
+        }
+        obstacle.Update();
+
+        if ((obstacle.y - obstacle.laserImgHeight / 2) <= (playerRocket.y + playerRocket.rocketImgHeight - 10) &&
+                ((playerRocket.y) <= obstacle.y + obstacle.laserImgHeight / 2))
+        {
+            Framework.gameState = Framework.GameState.GAMEOVER;
+        }
+
         // Checks where the player rocket is. Is it still in the space or is it landed or crashed?
         // First we check bottom y coordinate of the rocket if is it near the landing area.
         if(playerRocket.y + playerRocket.rocketImgHeight - 10   > landingArea.y)
@@ -128,6 +177,8 @@ public class Game {
      * @param g2d Graphics2D
      * @param mousePosition current mouse position.
      */
+
+
     public void Draw(Graphics2D g2d, Point mousePosition)
     {
         g2d.drawImage(backgroundImg, 0, 0, Framework.frameWidth, Framework.frameHeight, null);
@@ -135,6 +186,7 @@ public class Game {
         landingArea.Draw(g2d);
         
         playerRocket.Draw(g2d);
+        obstacle.Draw(g2d);
     }
     
     

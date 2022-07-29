@@ -58,7 +58,7 @@ public class Framework extends Canvas {
     /**
      * Possible states of the game
      */
-    public static enum GameState{STARTING, VISUALIZING, GAME_CONTENT_LOADING, MAIN_MENU, OPTIONS, PLAYING, GAMEOVER, DESTROYED, CUSTOMIZE_MENU,LOADING_BEFORE_START}
+    public static enum GameState{STARTING, VISUALIZING, GAME_CONTENT_LOADING, MAIN_MENU, OPTIONS, PLAYING, GAMEOVER, DESTROYED, CUSTOMIZE_MENU,LOADING_BEFORE_START,CHOOSE_CONTROL}
     /**
      * Current state of the game
      */
@@ -99,6 +99,7 @@ public class Framework extends Canvas {
     }
 
     static int ctm = 0;
+    static int ctrl = 0;
 
 
     /**
@@ -232,6 +233,7 @@ public class Framework extends Canvas {
     @Override
     public void Draw(Graphics2D g2d)
     {
+
         switch (gameState) {
             case PLAYING:
                 game.Draw(g2d, mousePosition());
@@ -243,9 +245,32 @@ public class Framework extends Canvas {
                 g2d.drawImage(moonLanderMenuImg, 0, 0, frameWidth, frameHeight, null);
                 g2d.setColor(Color.white);
                 g2d.drawString("Welcome to Moon Lander!.", frameWidth / 2 - 85, frameHeight / 2);
-                g2d.drawString("Press any key to choose your rocket.", frameWidth / 2 - 115, frameHeight / 2 + 30);
+                g2d.drawString("Press Enter to choose the way to play.", frameWidth / 2 - 115, frameHeight / 2 + 30);
                 g2d.drawString("WWW.GAMETUTORIAL.NET", 7, frameHeight - 5);
-                break;
+
+            case CHOOSE_CONTROL:
+                g2d.drawImage(moonLanderMenuImg, 0, 0, frameWidth, frameHeight, null);
+                g2d.setColor(Color.white);
+                g2d.drawString("Press 1 to play with mouse.",frameWidth / 2 - 115, frameHeight / 2);
+                g2d.drawString("Press 2 to play with keyboard.",frameWidth / 2 - 115, frameHeight / 2 + 30);
+                while (true) {
+                    if (Canvas.keyboardKeyState(KeyEvent.VK_1)) {
+                        ctrl = 1;
+                    } else if (Canvas.keyboardKeyState(KeyEvent.VK_2)) {
+                       ctrl = 2;
+                    }
+                    switch (ctrl){
+                        case 1:
+                            gameState = GameState.CUSTOMIZE_MENU;
+                            break;
+                        case 2:
+                            gameState = GameState.CUSTOMIZE_MENU;
+                            break;
+                    }
+                    break;
+                }
+
+
             case OPTIONS:
                 //...
                 break;
@@ -256,7 +281,7 @@ public class Framework extends Canvas {
             case LOADING_BEFORE_START:
                 g2d.setColor(Color.white);
                 g2d.drawString("Are you READY?", frameWidth / 2 - 50, frameHeight / 2);
-                g2d.drawString("Press any key to START!", frameWidth / 2 - 10, frameHeight / 2);
+                g2d.drawString("Press any key to START!", frameWidth / 2 - 10, frameHeight / 2 + 30);
 
                 break;
             case CUSTOMIZE_MENU:
@@ -279,9 +304,6 @@ public class Framework extends Canvas {
                             ctm += 1;
                         }
                     } else if (Canvas.keyboardKeyState(KeyEvent.VK_ENTER)) {
-                        switch (ctm){
-
-                        }
                         gameState = GameState.LOADING_BEFORE_START;
                         break;
                     }
@@ -364,7 +386,7 @@ public class Framework extends Canvas {
         switch (gameState)
         {
             case MAIN_MENU:
-                gameState = GameState.CUSTOMIZE_MENU;
+                gameState = GameState.CHOOSE_CONTROL;
                 break;
             case GAMEOVER:
                 if(e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER)
@@ -375,6 +397,7 @@ public class Framework extends Canvas {
                 break;
             case LOADING_BEFORE_START:
                 newGame();
+                break;
 
         }
     }

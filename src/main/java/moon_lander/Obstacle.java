@@ -22,6 +22,8 @@ public class Obstacle {
      */
     private Random random;
 
+    private int prob;
+
     /**
      * Images of the meteor in air.
      */
@@ -80,12 +82,20 @@ public class Obstacle {
     public void ResetLasers()
     {
 
-        y = random.nextInt(Framework.frameHeight - laserImgHeight);
+        prob = random.nextInt(100);
+        if(prob <= 5){
+            y = random.nextInt(Framework.frameHeight - laserImgHeight);
+        }
     }
 
     public void Update()
     {
+        prob = random.nextInt(100);
+        if(prob <= 5){
         y = random.nextInt(Framework.frameHeight - laserImgHeight);
+        } else {
+            y = 10000;
+        }
 
     }
 

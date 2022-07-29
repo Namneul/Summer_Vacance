@@ -17,6 +17,12 @@ import javax.imageio.ImageIO;
 
 public class Game {
 
+    private int curT;
+
+    private long preT;
+
+    private int delay = 1500;
+
     /**
      * The space rocket with which player will have to land.
      */
@@ -41,7 +47,6 @@ public class Game {
      */
     private BufferedImage redBorderImg;
 
-
     public Game()
     {
         Framework.gameState = Framework.GameState.GAME_CONTENT_LOADING;
@@ -49,6 +54,8 @@ public class Game {
         Thread threadForInitGame = new Thread() {
             @Override
             public void run(){
+
+
                 // Sets variables and objects for the game.
                 Initialize();
                 // Load game files (images, sounds, ...)
@@ -56,10 +63,24 @@ public class Game {
 
 
                 Framework.gameState = Framework.GameState.PLAYING;
+                curT= 0;
+                while(true){
+                    preT = System.currentTimeMillis();
+                        try {
+                            Thread.sleep(delay );
+                            obstacleInitialize();
+                            curT ++;
+
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                }
             }
         };
         threadForInitGame.start();
     }
+
+
 
 
     /**
@@ -70,6 +91,18 @@ public class Game {
         playerRocket = new PlayerRocket();
         landingArea  = new LandingArea();
         obstacle = new Obstacle();
+    }
+
+    private void obstacleInitialize(){
+//        try {
+//            Thread.sleep(delay - System.currentTimeMillis() + preT);
+//            curT ++;
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        if (curT % 100 == 0 ){
+            obstacle = new Obstacle();
+        }
     }
 
     /**
@@ -115,8 +148,8 @@ public class Game {
 
         obstacle.Update();
 
-        if ((obstacle.y - obstacle.laserImgHeight / 2) <= (playerRocket.y + playerRocket.rocketImgHeight / 2) &&
-                ((playerRocket.y - playerRocket.rocketImgHeight / 2) <= obstacle.y + obstacle.laserImgHeight / 2))
+        if ((obstacle.y - obstacle.laserImgHeight / 2) <= (playerRocket.y + playerRocket.rocketImgHeight - 10) &&
+                ((playerRocket.y) <= obstacle.y + obstacle.laserImgHeight / 2))
         {
             Framework.gameState = Framework.GameState.GAMEOVER;
         }

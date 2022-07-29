@@ -23,6 +23,7 @@ public class PlayerRocket {
      * We use this to generate a random number for starting x coordinate of the rocket.
      */
     private Random random;
+
  
     /**
      * X coordinate of the rocket.
